@@ -7,10 +7,10 @@ export const ContactItem = ({ contact }) => {
 
   const { deleteContact, setCurrent, clearCurrent } = contactContext
 
-  const { name, id, email, phone, type } = contact
+  const { name, _id, email, phone, type } = contact
 
   const onDelete = () => {
-    deleteContact(id)
+    deleteContact(_id)
     clearCurrent()
   }
 
