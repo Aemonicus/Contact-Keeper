@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from "../../context/auth/authContext"
 import { AlertContext } from "../../context/alert/alertContext"
+import { Navigate } from 'react-router-dom';
 
 
-export const Login = props => {
+export const Login = () => {
   const alertContext = useContext(AlertContext)
   const authContext = useContext(AuthContext)
 
@@ -11,15 +12,11 @@ export const Login = props => {
   const { login, error, clearErrors, isAuthenticated } = authContext
 
   useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push("/")
-    }
-
     if (error === "Invalid Credentials") {
       setAlert(error, "danger")
       clearErrors()
     }
-  }, [ error, isAuthenticated, props.history ])
+  }, [ error, isAuthenticated ])
 
   const [ user, setUser ] = useState({
     email: "",
@@ -43,6 +40,8 @@ export const Login = props => {
     }
 
   }
+
+  if (isAuthenticated) return <Navigate to='/' />;
 
   return (
     <div className="form-container">

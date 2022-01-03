@@ -29,10 +29,10 @@ export const App = () => {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route exact path="/" element={<PrivateRoute component={Home} />} />
-                  <Route exact path="/about" element={<About />} />
-                  <Route exact path="/register" element={<Register />} />
-                  <Route exact path="/login" element={<Login />} />
+                  <Route path='/' element={<PrivateRoute component={Home} />} />
+                  <Route path='about' element={<About />} />
+                  <Route path='register' element={<Register />} />
+                  <Route path='login' element={<Login />} />
                 </Routes>
               </div>
             </Fragment>

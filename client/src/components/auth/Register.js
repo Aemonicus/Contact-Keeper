@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { AlertContext } from "../../context/alert/alertContext"
 import { AuthContext } from "../../context/auth/authContext"
+import { Navigate } from 'react-router-dom';
 
-export const Register = props => {
+
+export const Register = () => {
 
   const alertContext = useContext(AlertContext)
   const authContext = useContext(AuthContext)
@@ -11,15 +13,12 @@ export const Register = props => {
   const { register, error, clearErrors, isAuthenticated } = authContext
 
   useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push("/")
-    }
 
     if (error === "User already exists") {
       setAlert(error, "danger")
       clearErrors()
     }
-  }, [ error, isAuthenticated, props.history ])
+  }, [ error, isAuthenticated ])
 
   const [ user, setUser ] = useState({
     name: "",
@@ -46,6 +45,8 @@ export const Register = props => {
       })
     }
   }
+
+  if (isAuthenticated) return <Navigate to='/' />;
 
   return (
     <div className="form-container">
